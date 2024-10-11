@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+// Mixins
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Variables
+
+@optionSize: 80px;
+@halfOptionSize: 40px;
+
+//
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +22,7 @@
 }
 
 body {
-  background: rgb(31, 55, 86);
+  background: #1f3756;
   padding: 32px;
 
   main {
@@ -46,6 +60,82 @@ body {
           font-size: 44px;
           font-weight: 800;
         }
+      }
+    }
+
+    .game-options {
+      width: fit-content;
+      margin: 64px auto;
+
+      position: relative;
+
+      .pentagon {
+        width: 220px;
+        height: 220px;
+        background-color: #16233d;
+        position: relative;
+        clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+
+        .inner-color {
+          width: 180px;
+          height: 180px;
+          background-color: #1f3756;
+          position: absolute;
+          top: calc(50% - 90px);
+          left: calc(50% - 90px);
+          clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+        }
+      }
+
+      .option {
+        .center();
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+
+        div {
+          .center();
+          width: 80%;
+          height: 80%;
+          background-color: white;
+          border-radius: 50%;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+
+      .scissors {
+        background-color: rgb(236, 158, 14);
+        top: calc(-50% + 50px);
+        left: calc(50% - 50px);
+      }
+
+      .paper {
+        background-color: rgb(72, 101, 244);
+        top: 20%;
+        right: calc(-50% + 50px);
+      }
+
+      .rock {
+        background-color: rgb(220, 46, 78);
+        bottom: calc(-50% + 50px);
+        right: 0%;
+      }
+
+      .lizard {
+        background-color: rgb(131, 79, 227);
+        bottom: calc(-50% + 50px);
+        left: 0%;
+      }
+
+      .spock {
+        background-color: rgb(64, 185, 206);
+        top: 20%;
+        left: calc(-50% + 50px);
       }
     }
   }
