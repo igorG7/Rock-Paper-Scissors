@@ -23,13 +23,17 @@
 
 body {
   background: #1f3756;
-  padding: 32px;
+  padding: 32px 0;
 
   main {
+    width: 85%;
+    margin: auto;
+
     .score {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 128px;
       padding: 16px;
       border: 2px #606e85 solid;
       border-radius: 8px;
@@ -37,15 +41,14 @@ body {
       .logo {
         margin-left: 8px;
 
-        p {
-          color: white;
-          font-weight: 800;
+        img {
+          height: 60px;
         }
       }
 
       .score-count {
-        width: 100px;
-        height: 90px;
+        width: 90px;
+        height: 80px;
         background-color: #f1f1f1;
         border-radius: 8px;
         padding: 8px;
@@ -54,6 +57,7 @@ body {
 
         .text {
           font-weight: 600;
+          font-size: 12px;
         }
 
         .points {
@@ -65,7 +69,7 @@ body {
 
     .game-options {
       width: fit-content;
-      margin: 64px auto;
+      margin: auto;
 
       position: relative;
 
@@ -89,8 +93,8 @@ body {
 
       .option {
         .center();
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         position: absolute;
 
@@ -102,40 +106,57 @@ body {
           border-radius: 50%;
 
           img {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
           }
         }
       }
 
       .scissors {
         background-color: rgb(236, 158, 14);
-        top: calc(-50% + 50px);
+        top: calc(-40% + 50px);
         left: calc(50% - 50px);
       }
 
       .paper {
         background-color: rgb(72, 101, 244);
         top: 20%;
-        right: calc(-50% + 50px);
+        right: calc(-40% + 50px);
       }
 
       .rock {
         background-color: rgb(220, 46, 78);
-        bottom: calc(-50% + 50px);
+        bottom: calc(-40% + 50px);
         right: 0%;
       }
 
       .lizard {
         background-color: rgb(131, 79, 227);
-        bottom: calc(-50% + 50px);
+        bottom: calc(-40% + 50px);
         left: 0%;
       }
 
       .spock {
         background-color: rgb(64, 185, 206);
         top: 20%;
-        left: calc(-50% + 50px);
+        left: calc(-40% + 50px);
+      }
+    }
+
+    .rules {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 128px;
+
+      .rules-button {
+        width: 110px;
+        height: 40px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
       }
     }
   }
