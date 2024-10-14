@@ -24,6 +24,7 @@
 body {
   background: #1f3756;
   padding: 32px 0;
+  position: relative;
 
   main {
     width: 85%;
@@ -257,6 +258,45 @@ body {
         border-radius: 8px;
         color: white;
         font-weight: 600;
+      }
+    }
+
+    .modal-rules {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .modal-container {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20% 32px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+
+        &.active {
+          display: flex;
+        }
+
+        h2 {
+          color: #606e85;
+          font-weight: 600;
+        }
+
+        img {
+          width: 100%;
+        }
+
+        .close {
+          margin: 0 auto;
+          width: fit-content;
+          background-color: transparent;
+          border: none;
+        }
       }
     }
   }
