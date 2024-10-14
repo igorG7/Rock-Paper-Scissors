@@ -70,6 +70,7 @@ body {
     .game-options {
       width: fit-content;
       margin: auto;
+      display: flex;
 
       position: relative;
 
@@ -140,6 +141,105 @@ body {
         background-color: rgb(64, 185, 206);
         top: 20%;
         left: calc(-40% + 50px);
+      }
+    }
+
+    .result-game {
+      width: 100%;
+      display: none;
+
+      .options-picked {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        .pick {
+          text-align: center;
+
+          .relative {
+            position: relative;
+            margin-bottom: 32px;
+
+            .picked {
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              background-color: blue;
+              z-index: 1;
+              margin: auto;
+            }
+
+            .layer-1 {
+              width: 160px;
+              height: 160px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.05;
+              position: absolute;
+              top: -20px;
+              left: -20px;
+              z-index: -1;
+            }
+
+            .layer-2 {
+              width: 200px;
+              height: 200px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.05;
+              position: absolute;
+              top: -40px;
+              left: -40px;
+              z-index: -1;
+            }
+
+            .layer-3 {
+              width: 240px;
+              height: 240px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.025;
+              position: absolute;
+              top: -60px;
+              left: -60px;
+              z-index: -1;
+            }
+          }
+
+          span {
+            color: white;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .result {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 64px;
+
+        p {
+          color: white;
+          font-weight: 600;
+          font-size: 48px;
+        }
+
+        .again {
+          width: 60%;
+          max-width: 191px;
+          height: 40px;
+          margin-top: 16px;
+          border-radius: 8px;
+          border: none;
+
+          span {
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
       }
     }
 
