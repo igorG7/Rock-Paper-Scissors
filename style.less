@@ -29,12 +29,13 @@ body {
   main {
     width: 85%;
     margin: auto;
-    z-index: 3000;
 
     .score {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 320px;
+      margin: 0 auto;
       margin-bottom: 128px;
       padding: 16px;
       border: 2px #606e85 solid;
@@ -300,6 +301,170 @@ body {
           width: fit-content;
           background-color: transparent;
           border: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    main {
+      width: 90%;
+
+      .score {
+        max-width: 600px;
+        margin-bottom: 100px;
+
+        .logo {
+          img {
+            height: 100px;
+          }
+        }
+
+        .score-count {
+          width: 140px;
+          height: 100px;
+          padding: 16px;
+
+          .text {
+            font-size: 14px;
+          }
+
+          .points {
+            font-size: 56px;
+          }
+        }
+      }
+
+      .game-options {
+        width: fit-content;
+        margin: auto;
+        display: flex;
+        position: relative;
+
+        .pentagon {
+          width: 320px;
+          height: 320px;
+
+          .inner-color {
+            width: 280px;
+            height: 280px;
+            top: calc(50% - 140px);
+            left: calc(50% - 140px);
+          }
+        }
+
+        .option {
+          width: 140px;
+          height: 140px;
+          cursor: pointer;
+
+          div {
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+
+        .scissors {
+          top: calc(-40% + 70px);
+          left: calc(50% - 70px);
+        }
+
+        .paper {
+          top: 20%;
+          right: calc(-40% + 70px);
+        }
+
+        .rock {
+          bottom: calc(-40% + 70px);
+          right: 0%;
+        }
+
+        .lizard {
+          bottom: calc(-40% + 70px);
+          left: 0%;
+        }
+
+        .spock {
+          top: 20%;
+          left: calc(-40% + 70px);
+        }
+      }
+
+      .result-game {
+        width: 600px;
+        margin: auto;
+        display: none;
+        position: relative;
+
+        &.expand {
+          width: 800px;
+          transition: width 1s;
+        }
+
+        .options-picked {
+          .pick {
+            display: flex;
+            flex-direction: column-reverse;
+
+            .relative {
+              position: relative;
+              margin-top: 64px;
+
+              .picked {
+                width: 240px;
+                height: 240px;
+                border-radius: 50%;
+              }
+
+              .layer-1 {
+                width: 280px;
+                height: 280px;
+                top: -20px;
+                left: -20px;
+              }
+
+              .layer-2 {
+                width: 320px;
+                height: 320px;
+                top: -40px;
+                left: -40px;
+              }
+
+              .layer-3 {
+                width: 360px;
+                height: 360px;
+                top: -60px;
+                left: -60px;
+              }
+            }
+
+            span {
+              font-weight: 600;
+              font-size: 20px;
+            }
+          }
+        }
+
+        .result {
+          margin: 0;
+          position: absolute;
+          visibility: hidden;
+          opacity: 0;
+          top: 40%;
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 3s;
+          }
+
+          .again {
+            cursor: pointer;
+          }
         }
       }
     }
