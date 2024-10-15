@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+// Mixins
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Variables
+
+@optionSize: 80px;
+@halfOptionSize: 40px;
+
+//
 * {
   margin: 0;
   padding: 0;
@@ -8,5 +22,503 @@
 }
 
 body {
-  background: rgb(31, 55, 86);
+  background: #1f3756;
+  padding: 32px 0;
+  position: relative;
+
+  main {
+    width: 85%;
+    margin: auto;
+
+    .score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 320px;
+      margin: 0 auto;
+      margin-bottom: 128px;
+      padding: 16px;
+      border: 2px #606e85 solid;
+      border-radius: 8px;
+
+      .logo {
+        margin-left: 8px;
+
+        img {
+          height: 60px;
+        }
+      }
+
+      .score-count {
+        width: 90px;
+        height: 80px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        padding: 8px;
+        text-align: center;
+        color: #3b4363;
+
+        .text {
+          font-weight: 600;
+          font-size: 12px;
+        }
+
+        .points {
+          font-size: 44px;
+          font-weight: 800;
+        }
+      }
+    }
+
+    .game-options {
+      width: fit-content;
+      margin: auto;
+      display: flex;
+
+      position: relative;
+
+      .pentagon {
+        width: 220px;
+        height: 220px;
+        background-color: #16233d;
+        position: relative;
+        clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+
+        .inner-color {
+          width: 180px;
+          height: 180px;
+          background-color: #1f3756;
+          position: absolute;
+          top: calc(50% - 90px);
+          left: calc(50% - 90px);
+          clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+        }
+      }
+
+      .option {
+        .center();
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        position: absolute;
+
+        div {
+          .center();
+          width: 80%;
+          height: 80%;
+          background-color: white;
+          border-radius: 50%;
+
+          img {
+            width: 35px;
+            height: 35px;
+          }
+        }
+      }
+
+      .scissors {
+        background-color: rgb(236, 158, 14);
+        top: calc(-40% + 50px);
+        left: calc(50% - 50px);
+      }
+
+      .paper {
+        background-color: rgb(72, 101, 244);
+        top: 20%;
+        right: calc(-40% + 50px);
+      }
+
+      .rock {
+        background-color: rgb(220, 46, 78);
+        bottom: calc(-40% + 50px);
+        right: 0%;
+      }
+
+      .lizard {
+        background-color: rgb(131, 79, 227);
+        bottom: calc(-40% + 50px);
+        left: 0%;
+      }
+
+      .spock {
+        background-color: rgb(64, 185, 206);
+        top: 20%;
+        left: calc(-40% + 50px);
+      }
+    }
+
+    .result-game {
+      width: 100%;
+      display: none;
+
+      .options-picked {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        .pick {
+          text-align: center;
+
+          .relative {
+            position: relative;
+            margin-bottom: 32px;
+
+            .picked {
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              background-color: blue;
+              z-index: 1;
+              margin: auto;
+            }
+
+            .layer-1 {
+              width: 160px;
+              height: 160px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.05;
+              position: absolute;
+              top: -20px;
+              left: -20px;
+              z-index: -1;
+            }
+
+            .layer-2 {
+              width: 200px;
+              height: 200px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.05;
+              position: absolute;
+              top: -40px;
+              left: -40px;
+              z-index: -1;
+            }
+
+            .layer-3 {
+              width: 240px;
+              height: 240px;
+              border-radius: 50%;
+              background-color: white;
+              opacity: 0.025;
+              position: absolute;
+              top: -60px;
+              left: -60px;
+              z-index: -1;
+            }
+          }
+
+          span {
+            color: white;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .result {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 64px;
+
+        p {
+          color: white;
+          font-weight: 600;
+          font-size: 48px;
+        }
+
+        .again {
+          width: 60%;
+          max-width: 191px;
+          height: 40px;
+          margin-top: 16px;
+          border-radius: 8px;
+          border: none;
+
+          span {
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .rules {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 128px;
+
+      .rules-button {
+        width: 110px;
+        height: 40px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+      }
+    }
+
+    .modal-rules {
+      width: 100%;
+      height: 100%;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1000;
+
+      &.active {
+        display: block;
+        z-index: 1000;
+      }
+
+      .modal-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20% 32px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+
+        h2 {
+          color: #606e85;
+          font-weight: 600;
+        }
+
+        img {
+          width: 100%;
+        }
+
+        .close {
+          margin: 0 auto;
+          width: fit-content;
+          background-color: transparent;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    height: 100%;
+
+    main {
+      width: 90%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .score {
+        width: 50%;
+        max-width: 600px;
+        margin-bottom: 100px;
+
+        .logo {
+          img {
+            height: 100px;
+          }
+        }
+
+        .score-count {
+          width: 140px;
+          height: 100px;
+          padding: 16px;
+
+          .text {
+            font-size: 14px;
+          }
+
+          .points {
+            font-size: 56px;
+          }
+        }
+      }
+
+      .game-options {
+        width: fit-content;
+        margin: auto;
+        display: flex;
+        position: relative;
+
+        .pentagon {
+          width: 320px;
+          height: 320px;
+
+          .inner-color {
+            width: 280px;
+            height: 280px;
+            top: calc(50% - 140px);
+            left: calc(50% - 140px);
+          }
+        }
+
+        .option {
+          width: 140px;
+          height: 140px;
+          cursor: pointer;
+
+          div {
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+
+        .scissors {
+          top: calc(-40% + 70px);
+          left: calc(50% - 70px);
+        }
+
+        .paper {
+          top: 20%;
+          right: calc(-40% + 70px);
+        }
+
+        .rock {
+          bottom: calc(-40% + 70px);
+          right: 0%;
+        }
+
+        .lizard {
+          bottom: calc(-40% + 70px);
+          left: 0%;
+        }
+
+        .spock {
+          top: 20%;
+          left: calc(-40% + 70px);
+        }
+      }
+
+      .result-game {
+        width: 600px;
+        margin: auto;
+        display: none;
+        position: relative;
+
+        &.expand {
+          width: 800px;
+          transition: width 1s;
+        }
+
+        .options-picked {
+          .pick {
+            display: flex;
+            flex-direction: column-reverse;
+
+            .relative {
+              position: relative;
+              margin-top: 64px;
+
+              .picked {
+                width: 240px;
+                height: 240px;
+                border-radius: 50%;
+              }
+
+              .layer-1 {
+                width: 280px;
+                height: 280px;
+                top: -20px;
+                left: -20px;
+              }
+
+              .layer-2 {
+                width: 320px;
+                height: 320px;
+                top: -40px;
+                left: -40px;
+              }
+
+              .layer-3 {
+                width: 360px;
+                height: 360px;
+                top: -60px;
+                left: -60px;
+              }
+            }
+
+            span {
+              font-weight: 600;
+              font-size: 20px;
+            }
+          }
+        }
+
+        .result {
+          margin: 0;
+          position: absolute;
+          visibility: hidden;
+          opacity: 0;
+          top: 40%;
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 3s;
+          }
+
+          .again {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .rules {
+        justify-content: end;
+        margin-top: 0;
+
+        .rules-button {
+          width: 130px;
+          height: 40px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+
+      .modal-rules {
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.575);
+        z-index: -1000;
+
+        &.active {
+          .center();
+          z-index: 1000;
+        }
+
+        .modal-container {
+          align-items: start;
+          padding: 32px;
+          width: 400px;
+          height: 450px;
+          border-radius: 8px;
+          position: relative;
+
+          h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+          }
+
+          .close {
+            position: absolute;
+            right: 32px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
 }
