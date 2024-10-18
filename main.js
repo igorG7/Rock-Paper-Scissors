@@ -53,6 +53,17 @@ const rules = [scissors, paper, rock, lizard, spock];
 
 function winOrLose(cpuChose, indexRule) {
   let activeRule = rules[indexRule];
-  activeRule.includes(cpuChose) ? console.log("Perdeu") : console.log("Ganhou");
+  activeRule.includes(cpuChose)
+    ? gameResolveAndScoreUpdate("perdeu")
+    : gameResolveAndScoreUpdate("ganhou");
   console.log(activeRule);
+}
+
+function gameResolveAndScoreUpdate(message) {
+  console.log(message);
+  message === "ganhou" ? scoreUser++ : scoreUser--;
+  if (scoreUser < 0) scoreUser = 0;
+  localStorage.setItem("score", scoreUser);
+  score.innerHTML = scoreUser;
+  console.log(scoreUser);
 }
