@@ -7,6 +7,7 @@ const options = Array.from(document.querySelectorAll(".option"));
 const possibleMoves = ["scissors", "paper", "rock", "lizard", "spock"];
 const gameOptionsElements = document.querySelector("#game-options");
 let elementPlayerChosenMove;
+let elemetCpuChosen;
 
 options.forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -25,13 +26,15 @@ options.forEach((item) => {
     playerChosenMove === cpuChosenMove
       ? draw()
       : winOrLose(cpuChosenMove, indexMove);
+
+    showMoves(elementPlayerChosenMove, elemetCpuChosen);
   });
 });
 
 function getRandom() {
   let random = parseInt(Math.random() * 5) + 1;
   let cpuChosenMove = possibleMoves[random - 1];
-  let elemetCpuChosen = gameOptionsElements.querySelector("." + cpuChosenMove);
+  elemetCpuChosen = gameOptionsElements.querySelector("." + cpuChosenMove);
 
   return cpuChosenMove;
 }
@@ -66,4 +69,13 @@ function gameResolveAndScoreUpdate(message) {
   localStorage.setItem("score", scoreUser);
   score.innerHTML = scoreUser;
   console.log(scoreUser);
+}
+
+const playerPickElement = document.querySelector("#player-pick");
+const cpuPickElement = document.querySelector("#cpu-pick");
+
+function showMoves(player, cpu) {
+  console.log(player);
+  playerPickElement.innerHTML = player.outerHTML;
+  cpuPickElement.innerHTML = cpu.outerHTML;
 }
