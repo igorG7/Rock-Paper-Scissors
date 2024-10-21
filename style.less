@@ -73,9 +73,12 @@ body {
     .game-options {
       width: fit-content;
       margin: auto;
-      display: flex;
-
+      display: none;
       position: relative;
+
+      &.active {
+        display: flex;
+      }
 
       .pentagon {
         width: 220px;
@@ -97,51 +100,33 @@ body {
 
       .option {
         .center();
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         position: absolute;
-
-        div {
-          .center();
-          width: 80%;
-          height: 80%;
-          background-color: white;
-          border-radius: 50%;
-
-          img {
-            width: 35px;
-            height: 35px;
-          }
-        }
       }
 
       .scissors {
-        background-color: rgb(236, 158, 14);
         top: calc(-40% + 50px);
         left: calc(50% - 50px);
       }
 
       .paper {
-        background-color: rgb(72, 101, 244);
         top: 20%;
         right: calc(-40% + 50px);
       }
 
       .rock {
-        background-color: rgb(220, 46, 78);
         bottom: calc(-40% + 50px);
         right: 0%;
       }
 
       .lizard {
-        background-color: rgb(131, 79, 227);
         bottom: calc(-40% + 50px);
         left: 0%;
       }
 
       .spock {
-        background-color: rgb(64, 185, 206);
         top: 20%;
         left: calc(-40% + 50px);
       }
@@ -150,6 +135,13 @@ body {
     .result-game {
       width: 100%;
       display: none;
+
+      &.active {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1s, visibility 0.5s;
+      }
 
       .options-picked {
         width: 100%;
@@ -168,9 +160,26 @@ body {
               width: 120px;
               height: 120px;
               border-radius: 50%;
-              background-color: blue;
+              position: relative;
               z-index: 1;
               margin: auto;
+
+              .center-color {
+                background-color: #16233d;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                position: absolute;
+                top: calc(50% - 40px);
+                left: calc(50% - 40px);
+                z-index: -1;
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+              }
             }
 
             .layer-1 {
@@ -221,8 +230,16 @@ body {
         width: 100%;
         display: flex;
         flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
         align-items: center;
         margin-top: 64px;
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+          transition: opacity 3s;
+        }
 
         p {
           color: white;
@@ -347,8 +364,16 @@ body {
       .game-options {
         width: fit-content;
         margin: auto;
-        display: flex;
+        display: none;
         position: relative;
+        visibility: hidden;
+        opacity: 0;
+
+        &.active {
+          display: flex;
+          visibility: visible;
+          opacity: 1;
+        }
 
         .pentagon {
           width: 320px;
@@ -366,13 +391,6 @@ body {
           width: 140px;
           height: 140px;
           cursor: pointer;
-
-          div {
-            img {
-              width: 50px;
-              height: 50px;
-            }
-          }
         }
 
         .scissors {
@@ -406,6 +424,15 @@ body {
         margin: auto;
         display: none;
         position: relative;
+        opacity: 0;
+        visibility: hidden;
+
+        &.active {
+          display: flex;
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 1s, visibility 0.5s;
+        }
 
         &.expand {
           width: 800px;
@@ -425,6 +452,13 @@ body {
                 width: 240px;
                 height: 240px;
                 border-radius: 50%;
+
+                .center-color {
+                  width: 200px;
+                  height: 200px;
+                  top: calc(50% - 100px);
+                  left: calc(50% - 100px);
+                }
               }
 
               .layer-1 {
