@@ -136,3 +136,19 @@ playAgainButton.addEventListener("click", () => {
   movesPicked.classList.remove("active");
   gameOptionsElements.classList.add("active");
 });
+
+const rulesButton = document.querySelector("#rules-button");
+const modal = document.querySelector("#modal");
+const closeButton = document.querySelector("#close");
+
+rulesButton.addEventListener("click", openOrCloseModalRules);
+closeButton.addEventListener("click", openOrCloseModalRules);
+modal.addEventListener("click", openOrCloseModalRules);
+
+function openOrCloseModalRules() {
+  const verifyState = modal.classList.contains("active");
+  console.log(verifyState);
+  verifyState === false
+    ? modal.classList.add("active")
+    : modal.classList.remove("active");
+}
