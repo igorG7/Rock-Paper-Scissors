@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div class="game-options" id="game-options">
+      <div class="game-options active" id="game-options">
         <div class="pentagon">
           <div class="inner-color"></div>
         </div>
@@ -69,11 +69,13 @@
         />
       </div>
 
-      <div class="result-game">
+      <div class="result-game" id="result-game">
         <div class="options-picked">
           <div class="pick">
             <div class="relative">
-              <div class="picked" id="player-pick"></div>
+              <div class="picked" id="player-pick">
+                <div class="center-color"></div>
+              </div>
               <div class="layer-1"></div>
               <div class="layer-2"></div>
               <div class="layer-3"></div>
@@ -83,7 +85,9 @@
 
           <div class="pick">
             <div class="relative">
-              <div class="picked" id="cpu-pick"></div>
+              <div class="picked" id="cpu-pick">
+                <div class="center-color"></div>
+              </div>
               <div class="layer-1"></div>
               <div class="layer-2"></div>
               <div class="layer-3"></div>
@@ -92,9 +96,11 @@
           </div>
         </div>
 
-        <div class="result">
-          <p>YOU WIN</p>
-          <button class="again"><span>PLAY AGAIN</span></button>
+        <div class="result" id="result">
+          <p id="result-message"></p>
+          <button class="again" id="play-again-button">
+            <span>PLAY AGAIN</span>
+          </button>
         </div>
       </div>
       <div class="rules">

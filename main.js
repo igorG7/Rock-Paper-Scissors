@@ -9,6 +9,11 @@ const gameOptionsElements = document.querySelector("#game-options");
 let elementPlayerChosenMove;
 let elemetCpuChosen;
 
+const result = document.querySelector("#result");
+const resultMessage = document.querySelector("#result-message");
+const movesPicked = document.querySelector("#result-game");
+const playAgainButton = document.querySelector("#play-again-button");
+
 options.forEach((item) => {
   item.addEventListener("click", (event) => {
     elementPlayerChosenMove = event.currentTarget;
@@ -43,7 +48,19 @@ function getRandom() {
 console.log(gameOptionsElements);
 
 function draw() {
-  console.log("Empatou");
+  gameOptionsElements.classList.remove("active");
+
+  setTimeout(() => {
+    showResultGameElement();
+  }, 1000);
+
+  setTimeout(() => {
+    expandAnimation();
+  }, 3000);
+
+  setTimeout(() => {
+    showResultMessage("YOU DRAW");
+  }, 4000);
 }
 
 const scissors = ["spock", "rock"];
@@ -57,14 +74,31 @@ const rules = [scissors, paper, rock, lizard, spock];
 function winOrLose(cpuChose, indexRule) {
   let activeRule = rules[indexRule];
   activeRule.includes(cpuChose)
-    ? gameResolveAndScoreUpdate("perdeu")
-    : gameResolveAndScoreUpdate("ganhou");
+    ? gameResolveAndScoreUpdate("YOU LOSE")
+    : gameResolveAndScoreUpdate("YOU WIN");
   console.log(activeRule);
 }
 
 function gameResolveAndScoreUpdate(message) {
   console.log(message);
-  message === "ganhou" ? scoreUser++ : scoreUser--;
+  gameOptionsElements.classList.remove("active");
+
+  setTimeout(() => {
+    showResultGameElement();
+  }, 1000);
+
+  setTimeout(() => {
+    expandAnimation();
+  }, 3000);
+
+  setTimeout(() => {
+    showResultMessage(message);
+    scoreCount(message);
+  }, 4000);
+}
+
+function scoreCount(resultMessage) {
+  resultMessage === "YOU WIN" ? scoreUser++ : scoreUser--;
   if (scoreUser < 0) scoreUser = 0;
   localStorage.setItem("score", scoreUser);
   score.innerHTML = scoreUser;
@@ -77,5 +111,28 @@ const cpuPickElement = document.querySelector("#cpu-pick");
 function showMoves(player, cpu) {
   console.log(player);
   playerPickElement.innerHTML = player.outerHTML;
-  cpuPickElement.innerHTML = cpu.outerHTML;
+
+  setTimeout(() => {
+    cpuPickElement.innerHTML = cpu.outerHTML;
+  }, 2000);
 }
+
+function showResultGameElement() {
+  movesPicked.classList.add("active");
+}
+
+function showResultMessage(resolutionMessage) {
+  result.classList.add("active");
+  resultMessage.innerHTML = resolutionMessage;
+}
+
+function expandAnimation() {
+  movesPicked.classList.add("expand");
+}
+
+playAgainButton.addEventListener("click", () => {
+  result.classList.remove("active");
+  movesPicked.classList.remove("expand");
+  movesPicked.classList.remove("active");
+  gameOptionsElements.classList.add("active");
+});

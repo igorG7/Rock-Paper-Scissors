@@ -73,9 +73,12 @@ body {
     .game-options {
       width: fit-content;
       margin: auto;
-      display: flex;
-
+      display: none;
       position: relative;
+
+      &.active {
+        display: flex;
+      }
 
       .pentagon {
         width: 220px;
@@ -133,6 +136,13 @@ body {
       width: 100%;
       display: none;
 
+      &.active {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1s, visibility 0.5s;
+      }
+
       .options-picked {
         width: 100%;
         display: flex;
@@ -150,9 +160,26 @@ body {
               width: 120px;
               height: 120px;
               border-radius: 50%;
-              background-color: blue;
+              position: relative;
               z-index: 1;
               margin: auto;
+
+              .center-color {
+                background-color: #16233d;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                position: absolute;
+                top: calc(50% - 40px);
+                left: calc(50% - 40px);
+                z-index: -1;
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+              }
             }
 
             .layer-1 {
@@ -203,8 +230,16 @@ body {
         width: 100%;
         display: flex;
         flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
         align-items: center;
         margin-top: 64px;
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+          transition: opacity 3s;
+        }
 
         p {
           color: white;
@@ -329,8 +364,16 @@ body {
       .game-options {
         width: fit-content;
         margin: auto;
-        display: flex;
+        display: none;
         position: relative;
+        visibility: hidden;
+        opacity: 0;
+
+        &.active {
+          display: flex;
+          visibility: visible;
+          opacity: 1;
+        }
 
         .pentagon {
           width: 320px;
@@ -379,8 +422,17 @@ body {
       .result-game {
         width: 600px;
         margin: auto;
-        display: flex;
+        display: none;
         position: relative;
+        opacity: 0;
+        visibility: hidden;
+
+        &.active {
+          display: flex;
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 1s, visibility 0.5s;
+        }
 
         &.expand {
           width: 800px;
@@ -401,9 +453,11 @@ body {
                 height: 240px;
                 border-radius: 50%;
 
-                img {
-                  width: 100%;
-                  height: 100%;
+                .center-color {
+                  width: 200px;
+                  height: 200px;
+                  top: calc(50% - 100px);
+                  left: calc(50% - 100px);
                 }
               }
 
