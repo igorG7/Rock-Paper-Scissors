@@ -142,13 +142,21 @@ const modal = document.querySelector("#modal");
 const closeButton = document.querySelector("#close");
 
 rulesButton.addEventListener("click", openOrCloseModalRules);
-closeButton.addEventListener("click", openOrCloseModalRules);
 modal.addEventListener("click", openOrCloseModalRules);
+closeButton.addEventListener("click", openOrCloseModalRules);
 
-function openOrCloseModalRules() {
+function openOrCloseModalRules(event) {
   const verifyState = modal.classList.contains("active");
-  console.log(verifyState);
-  verifyState === false
-    ? modal.classList.add("active")
-    : modal.classList.remove("active");
+  let clickTarget = event.target;
+
+  if (verifyState === false) {
+    modal.classList.add("active");
+  }
+
+  if (
+    clickTarget.classList.contains("x-button") ||
+    clickTarget.classList.contains("modal-rules")
+  ) {
+    modal.classList.remove("active");
+  }
 }
