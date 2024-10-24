@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
 }
-
 // Variables
 
 @optionSize: 80px;
@@ -22,7 +21,11 @@
 }
 
 body {
-  background: #1f3756;
+  background: radial-gradient(
+    circle,
+    hsla(214, 47%, 23%, 1) 0%,
+    hsla(238, 48%, 15%, 1) 100%
+  );
   padding: 32px 0;
   position: relative;
 
@@ -90,7 +93,7 @@ body {
         .inner-color {
           width: 180px;
           height: 180px;
-          background-color: #1f3756;
+          background-color: #1c324e;
           position: absolute;
           top: calc(50% - 90px);
           left: calc(50% - 90px);
@@ -183,39 +186,72 @@ body {
             }
 
             .layer-1 {
-              width: 160px;
-              height: 160px;
+              width: 0;
+              height: 0;
               border-radius: 50%;
               background-color: white;
-              opacity: 0.05;
-              position: absolute;
-              top: -20px;
-              left: -20px;
-              z-index: -1;
-            }
-
-            .layer-2 {
-              width: 200px;
-              height: 200px;
-              border-radius: 50%;
-              background-color: white;
-              opacity: 0.05;
               position: absolute;
               top: -40px;
               left: -40px;
               z-index: -1;
+              visibility: hidden;
+              opacity: 0;
+              transform: scale(0);
+
+              &.active {
+                width: 200px;
+                height: 200px;
+                visibility: visible;
+                opacity: 0.05;
+                transform: scale(1);
+                transition: transform 0.5s, opacity 0.5s;
+              }
+            }
+
+            .layer-2 {
+              width: 0;
+              height: 0;
+              border-radius: 50%;
+              background-color: white;
+              position: absolute;
+              top: -80px;
+              left: -80px;
+              z-index: -1;
+              visibility: hidden;
+              opacity: 0;
+              transform: scale(0);
+
+              &.active {
+                width: 280px;
+                height: 280px;
+                visibility: visible;
+                opacity: 0.025;
+                transform: scale(1);
+                transition: transform 1s, opacity 1s;
+              }
             }
 
             .layer-3 {
-              width: 240px;
-              height: 240px;
+              width: 0;
+              height: 0;
               border-radius: 50%;
               background-color: white;
-              opacity: 0.025;
               position: absolute;
-              top: -60px;
-              left: -60px;
+              top: -120px;
+              left: -120px;
               z-index: -1;
+              visibility: hidden;
+              opacity: 0;
+              transform: scale(0);
+
+              &.active {
+                width: 360px;
+                height: 360px;
+                visibility: visible;
+                opacity: 0.015;
+                transform: scale(1);
+                transition: transform 1.5s, opacity 1.5s;
+              }
             }
           }
 
@@ -463,24 +499,39 @@ body {
               }
 
               .layer-1 {
-                width: 280px;
-                height: 280px;
-                top: -20px;
-                left: -20px;
+                width: 0px;
+                height: 0px;
+                top: -50px;
+                left: -50px;
+
+                &.active {
+                  width: 340px;
+                  height: 340px;
+                }
               }
 
               .layer-2 {
-                width: 320px;
-                height: 320px;
-                top: -40px;
-                left: -40px;
+                width: 0;
+                height: 0;
+                top: -100px;
+                left: -100px;
+
+                &.active {
+                  width: 440px;
+                  height: 440px;
+                }
               }
 
               .layer-3 {
-                width: 360px;
-                height: 360px;
-                top: -60px;
-                left: -60px;
+                width: 0;
+                height: 0;
+                top: -150px;
+                left: -150px;
+
+                &.active {
+                  width: 540px;
+                  height: 540px;
+                }
               }
             }
 

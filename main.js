@@ -93,6 +93,7 @@ function gameResolveAndScoreUpdate(message) {
 
   setTimeout(() => {
     showResultMessage(message);
+    winnerEffect(message);
     scoreCount(message);
   }, 4000);
 }
@@ -130,11 +131,35 @@ function expandAnimation() {
   movesPicked.classList.add("expand");
 }
 
+const layersPlayer = document.querySelector("#layers-player");
+const layersCpu = document.querySelector("#layers-cpu");
+
+function winnerEffect(resultMessage) {
+  if (resultMessage === "YOU WIN") {
+    const layers = layersPlayer.querySelectorAll(".layer");
+
+    layers.forEach((item) => {
+      item.classList.add("active");
+    });
+  } else {
+    const layers = layersCpu.querySelectorAll(".layer");
+
+    layers.forEach((item) => {
+      item.classList.add("active");
+    });
+  }
+}
+
 playAgainButton.addEventListener("click", () => {
   result.classList.remove("active");
   movesPicked.classList.remove("expand");
   movesPicked.classList.remove("active");
   gameOptionsElements.classList.add("active");
+
+  const layers = document.querySelectorAll(".layer");
+  layers.forEach((item) => {
+    item.classList.remove("active");
+  });
 });
 
 const rulesButton = document.querySelector("#rules-button");
