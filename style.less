@@ -179,9 +179,17 @@ body {
               }
 
               img {
-                width: 100%;
-                height: 100%;
+                width: 0%;
+                height: 0%;
                 z-index: 1;
+                transform: scale(0);
+
+                &.active {
+                  width: 100%;
+                  height: 100%;
+                  transform: scale(1);
+                  transition: transform 0.5s;
+                }
               }
             }
 
@@ -270,17 +278,22 @@ body {
         opacity: 0;
         align-items: center;
         margin-top: 64px;
+        position: relative;
 
         &.active {
           visibility: visible;
           opacity: 1;
-          transition: opacity 3s;
         }
 
         p {
           color: white;
           font-weight: 600;
-          font-size: 48px;
+          font-size: 80px;
+
+          &.active {
+            font-size: 48px;
+            transition: font-size 200ms;
+          }
         }
 
         .again {
@@ -290,6 +303,16 @@ body {
           margin-top: 16px;
           border-radius: 8px;
           border: none;
+          position: absolute;
+          bottom: -64px;
+          left: 0;
+          opacity: 0;
+
+          &.active {
+            left: calc(50% - 95px);
+            opacity: 1;
+            transition: left 300ms, opacity 300ms;
+          }
 
           span {
             font-weight: 600;
@@ -552,7 +575,6 @@ body {
           &.active {
             visibility: visible;
             opacity: 1;
-            transition: opacity 3s;
           }
 
           .again {
