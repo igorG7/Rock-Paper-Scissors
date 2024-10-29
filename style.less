@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
 }
-
 // Variables
 
 @optionSize: 80px;
@@ -21,504 +20,346 @@
   font-family: "Barlow Semi Condensed";
 }
 
-body {
-  background: #1f3756;
-  padding: 32px 0;
-  position: relative;
-
-  main {
-    width: 85%;
-    margin: auto;
-
-    .score {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 320px;
-      margin: 0 auto;
-      margin-bottom: 128px;
-      padding: 16px;
-      border: 2px #606e85 solid;
-      border-radius: 8px;
-
-      .logo {
-        margin-left: 8px;
-
-        img {
-          height: 60px;
-        }
-      }
-
-      .score-count {
-        width: 90px;
-        height: 80px;
-        background-color: #f1f1f1;
-        border-radius: 8px;
-        padding: 8px;
-        text-align: center;
-        color: #3b4363;
-
-        .text {
-          font-weight: 600;
-          font-size: 12px;
-        }
-
-        .points {
-          font-size: 44px;
-          font-weight: 800;
-        }
-      }
-    }
-
-    .game-options {
-      width: fit-content;
-      margin: auto;
-      display: none;
-      position: relative;
-
-      &.active {
-        display: flex;
-      }
-
-      .pentagon {
-        width: 220px;
-        height: 220px;
-        background-color: #16233d;
-        position: relative;
-        clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
-
-        .inner-color {
-          width: 180px;
-          height: 180px;
-          background-color: #1f3756;
-          position: absolute;
-          top: calc(50% - 90px);
-          left: calc(50% - 90px);
-          clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
-        }
-      }
-
-      .option {
-        .center();
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        position: absolute;
-      }
-
-      .scissors {
-        top: calc(-40% + 50px);
-        left: calc(50% - 50px);
-      }
-
-      .paper {
-        top: 20%;
-        right: calc(-40% + 50px);
-      }
-
-      .rock {
-        bottom: calc(-40% + 50px);
-        right: 0%;
-      }
-
-      .lizard {
-        bottom: calc(-40% + 50px);
-        left: 0%;
-      }
-
-      .spock {
-        top: 20%;
-        left: calc(-40% + 50px);
-      }
-    }
-
-    .result-game {
-      width: 100%;
-      display: none;
-
-      &.active {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 1s, visibility 0.5s;
-      }
-
-      .options-picked {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-
-        .pick {
-          text-align: center;
-
-          .relative {
-            position: relative;
-            margin-bottom: 32px;
-
-            .picked {
-              width: 120px;
-              height: 120px;
-              border-radius: 50%;
-              position: relative;
-              z-index: 1;
-              margin: auto;
-
-              .center-color {
-                background-color: #16233d;
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                position: absolute;
-                top: calc(50% - 40px);
-                left: calc(50% - 40px);
-                z-index: -1;
-              }
-
-              img {
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-              }
-            }
-
-            .layer-1 {
-              width: 160px;
-              height: 160px;
-              border-radius: 50%;
-              background-color: white;
-              opacity: 0.05;
-              position: absolute;
-              top: -20px;
-              left: -20px;
-              z-index: -1;
-            }
-
-            .layer-2 {
-              width: 200px;
-              height: 200px;
-              border-radius: 50%;
-              background-color: white;
-              opacity: 0.05;
-              position: absolute;
-              top: -40px;
-              left: -40px;
-              z-index: -1;
-            }
-
-            .layer-3 {
-              width: 240px;
-              height: 240px;
-              border-radius: 50%;
-              background-color: white;
-              opacity: 0.025;
-              position: absolute;
-              top: -60px;
-              left: -60px;
-              z-index: -1;
-            }
-          }
-
-          span {
-            color: white;
-            font-weight: 600;
-          }
-        }
-      }
-
-      .result {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        visibility: hidden;
-        opacity: 0;
-        align-items: center;
-        margin-top: 64px;
-
-        &.active {
-          visibility: visible;
-          opacity: 1;
-          transition: opacity 3s;
-        }
-
-        p {
-          color: white;
-          font-weight: 600;
-          font-size: 48px;
-        }
-
-        .again {
-          width: 60%;
-          max-width: 191px;
-          height: 40px;
-          margin-top: 16px;
-          border-radius: 8px;
-          border: none;
-
-          span {
-            font-weight: 600;
-            font-size: 16px;
-          }
-        }
-      }
-    }
-
-    .rules {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 128px;
-
-      .rules-button {
-        width: 110px;
-        height: 40px;
-        background-color: transparent;
-        border: 1px solid white;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-      }
-    }
-
-    .modal-rules {
-      width: 100%;
-      height: 100%;
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1000;
-
-      &.active {
-        display: block;
-        z-index: 1000;
-      }
-
-      .modal-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20% 32px;
-        width: 100%;
-        height: 100%;
-        background-color: rgb(255, 255, 255);
-        z-index: 3000;
-
-        h2 {
-          color: #606e85;
-          font-weight: 600;
-        }
-
-        img {
-          width: 100%;
-        }
-
-        .close {
-          margin: 0 auto;
-          width: fit-content;
-          background-color: transparent;
-          border: none;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1024px) {
+html {
   body {
+    background: radial-gradient(
+      circle,
+      hsla(214, 47%, 23%, 1) 0%,
+      hsla(238, 48%, 15%, 1) 100%
+    );
+    padding: 32px 0;
+    position: relative;
     height: 100%;
 
     main {
-      width: 90%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      width: 80%;
+      margin: auto;
 
       .score {
-        width: 50%;
-        max-width: 600px;
-        margin-bottom: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 340px;
+        margin: 0 auto;
+        margin-bottom: 128px;
+        padding: 16px;
+        border: 2px #606e85 solid;
+        border-radius: 8px;
 
         .logo {
+          margin-left: 8px;
+
           img {
-            height: 100px;
+            height: 60px;
           }
         }
 
         .score-count {
-          width: 140px;
-          height: 100px;
-          padding: 16px;
+          width: 90px;
+          height: 80px;
+          background-color: #f1f1f1;
+          border-radius: 8px;
+          padding: 8px;
+          text-align: center;
+          color: #3b4363;
 
           .text {
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 12px;
           }
 
           .points {
-            font-size: 56px;
+            font-size: 44px;
+            font-weight: 800;
           }
         }
       }
 
-      .game-options {
-        width: fit-content;
-        margin: auto;
-        display: none;
+      .relative-container {
+        width: 100%;
+        max-width: 340px;
+        height: 360px;
+        margin: 0 auto;
         position: relative;
-        visibility: hidden;
-        opacity: 0;
 
-        &.active {
-          display: flex;
-          visibility: visible;
-          opacity: 1;
-        }
+        .game-options {
+          width: fit-content;
+          margin: auto;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 0;
 
-        .pentagon {
-          width: 320px;
-          height: 320px;
+          &.active {
+            opacity: 1;
+          }
 
-          .inner-color {
-            width: 280px;
-            height: 280px;
-            top: calc(50% - 140px);
-            left: calc(50% - 140px);
+          .pentagon {
+            width: 220px;
+            height: 220px;
+            background-color: #16233d;
+            position: relative;
+            clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+
+            .inner-color {
+              width: 180px;
+              height: 180px;
+              background-color: #1c324e;
+              position: absolute;
+              top: calc(50% - 90px);
+              left: calc(50% - 90px);
+              clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
+            }
+          }
+
+          .option {
+            .center();
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+          }
+
+          .scissors {
+            top: calc(-40% + 50px);
+            left: calc(50% - 50px);
+          }
+
+          .paper {
+            top: 20%;
+            right: calc(-40% + 50px);
+          }
+
+          .rock {
+            bottom: calc(-40% + 50px);
+            right: 0%;
+          }
+
+          .lizard {
+            bottom: calc(-40% + 50px);
+            left: 0%;
+          }
+
+          .spock {
+            top: 20%;
+            left: calc(-40% + 50px);
           }
         }
 
-        .option {
-          width: 140px;
-          height: 140px;
-          cursor: pointer;
-        }
+        .result-game {
+          width: 100%;
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-        .scissors {
-          top: calc(-40% + 70px);
-          left: calc(50% - 70px);
-        }
+          &.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s, visibility 0.5s;
+          }
 
-        .paper {
-          top: 20%;
-          right: calc(-40% + 70px);
-        }
-
-        .rock {
-          bottom: calc(-40% + 70px);
-          right: 0%;
-        }
-
-        .lizard {
-          bottom: calc(-40% + 70px);
-          left: 0%;
-        }
-
-        .spock {
-          top: 20%;
-          left: calc(-40% + 70px);
-        }
-      }
-
-      .result-game {
-        width: 600px;
-        margin: auto;
-        display: none;
-        position: relative;
-        opacity: 0;
-        visibility: hidden;
-
-        &.active {
-          display: flex;
-          opacity: 1;
-          visibility: visible;
-          transition: opacity 1s, visibility 0.5s;
-        }
-
-        &.expand {
-          width: 800px;
-          transition: width 1s;
-        }
-
-        .options-picked {
-          .pick {
+          .options-picked {
+            width: 100%;
             display: flex;
-            flex-direction: column-reverse;
+            justify-content: space-between;
+            position: relative;
 
-            .relative {
-              position: relative;
-              margin-top: 64px;
+            .pick {
+              text-align: center;
 
-              .picked {
-                width: 240px;
-                height: 240px;
-                border-radius: 50%;
+              .relative {
+                position: relative;
+                margin-bottom: 32px;
 
-                .center-color {
-                  width: 200px;
-                  height: 200px;
-                  top: calc(50% - 100px);
-                  left: calc(50% - 100px);
+                .picked {
+                  width: 120px;
+                  height: 120px;
+                  border-radius: 50%;
+                  position: relative;
+                  z-index: 1;
+                  margin: auto;
+
+                  .center-color {
+                    background-color: #16233d;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: calc(50% - 40px);
+                    left: calc(50% - 40px);
+                    z-index: -1;
+                  }
+
+                  img {
+                    width: 0%;
+                    height: 0%;
+                    z-index: 1;
+                    transform: scale(0);
+
+                    &.active {
+                      width: 100%;
+                      height: 100%;
+                      transform: scale(1);
+                      transition: transform 0.5s;
+                    }
+                  }
+                }
+
+                .layer-1 {
+                  width: 0;
+                  height: 0;
+                  border-radius: 50%;
+                  background-color: white;
+                  position: absolute;
+                  top: -40px;
+                  left: -40px;
+                  z-index: -1;
+                  visibility: hidden;
+                  opacity: 0;
+                  transform: scale(0);
+
+                  &.active {
+                    width: 200px;
+                    height: 200px;
+                    visibility: visible;
+                    opacity: 0.05;
+                    transform: scale(1);
+                    transition: transform 0.5s, opacity 0.5s;
+                  }
+                }
+
+                .layer-2 {
+                  width: 0;
+                  height: 0;
+                  border-radius: 50%;
+                  background-color: white;
+                  position: absolute;
+                  top: -80px;
+                  left: -80px;
+                  z-index: -1;
+                  visibility: hidden;
+                  opacity: 0;
+                  transform: scale(0);
+
+                  &.active {
+                    width: 280px;
+                    height: 280px;
+                    visibility: visible;
+                    opacity: 0.025;
+                    transform: scale(1);
+                    transition: transform 1s, opacity 1s;
+                  }
+                }
+
+                .layer-3 {
+                  width: 0;
+                  height: 0;
+                  border-radius: 50%;
+                  background-color: white;
+                  position: absolute;
+                  top: -120px;
+                  left: -120px;
+                  z-index: -1;
+                  visibility: hidden;
+                  opacity: 0;
+                  transform: scale(0);
+
+                  &.active {
+                    width: 360px;
+                    height: 360px;
+                    visibility: visible;
+                    opacity: 0.015;
+                    transform: scale(1);
+                    transition: transform 1.5s, opacity 1.5s;
+                  }
                 }
               }
 
-              .layer-1 {
-                width: 280px;
-                height: 280px;
-                top: -20px;
-                left: -20px;
-              }
-
-              .layer-2 {
-                width: 320px;
-                height: 320px;
-                top: -40px;
-                left: -40px;
-              }
-
-              .layer-3 {
-                width: 360px;
-                height: 360px;
-                top: -60px;
-                left: -60px;
+              span {
+                color: white;
+                font-weight: 600;
               }
             }
+          }
 
-            span {
+          .result {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            visibility: hidden;
+            opacity: 0;
+            align-items: center;
+            margin-top: 64px;
+
+            &.active {
+              visibility: visible;
+              opacity: 1;
+            }
+
+            p {
+              color: white;
               font-weight: 600;
-              font-size: 20px;
+              font-size: 80px;
+
+              &.active {
+                font-size: 48px;
+                transition: font-size 200ms;
+              }
             }
-          }
-        }
 
-        .result {
-          margin: 0;
-          position: absolute;
-          visibility: hidden;
-          opacity: 0;
-          top: 40%;
+            .button-container {
+              height: 40px;
+              width: 100%;
+              display: flex;
+              position: relative;
+              margin-top: 16px;
 
-          &.active {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 3s;
-          }
+              .again {
+                width: 100%;
+                max-width: 191px;
+                height: 40px;
+                //margin-top: 16px;
+                border-radius: 8px;
+                border: none;
+                position: absolute;
+                left: -20%;
+                opacity: 0;
 
-          .again {
-            cursor: pointer;
+                &.active {
+                  left: calc(50% - 95px);
+                  opacity: 1;
+                  transition: left 300ms, opacity 300ms;
+                }
+
+                span {
+                  font-weight: 600;
+                  font-size: 16px;
+                }
+              }
+            }
           }
         }
       }
 
       .rules {
-        justify-content: end;
-        margin-top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
 
         .rules-button {
-          width: 130px;
+          width: 110px;
           height: 40px;
-          font-size: 16px;
-          cursor: pointer;
+          background-color: transparent;
+          border: 1px solid white;
+          border-radius: 8px;
+          color: white;
+          font-weight: 600;
         }
       }
 
@@ -526,31 +367,298 @@ body {
         width: 100%;
         height: 100%;
         display: none;
-        background-color: rgba(0, 0, 0, 0.575);
+        position: absolute;
+        top: 0;
+        left: 0;
         z-index: -1000;
 
         &.active {
-          .center();
+          display: block;
           z-index: 1000;
         }
 
         .modal-container {
-          align-items: start;
-          padding: 32px;
-          width: 400px;
-          height: 450px;
-          border-radius: 8px;
-          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20% 32px;
+          width: 100%;
+          height: 100%;
+          background-color: rgb(255, 255, 255);
+          z-index: 3000;
 
           h2 {
-            font-size: 28px;
-            margin-bottom: 16px;
+            color: #606e85;
+            font-weight: 600;
+          }
+
+          img {
+            width: 100%;
+            max-width: 360px;
           }
 
           .close {
+            margin: 0 auto;
+            width: fit-content;
+            background-color: transparent;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    body {
+      height: 100%;
+      //padding: 32px;
+      //position: relative;
+
+      main {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .score {
+          width: 50%;
+          max-width: 600px;
+          margin-bottom: 100px;
+
+          .logo {
+            img {
+              height: 100px;
+            }
+          }
+
+          .score-count {
+            width: 140px;
+            height: 100px;
+            padding: 16px;
+
+            .text {
+              font-size: 14px;
+            }
+
+            .points {
+              font-size: 56px;
+            }
+          }
+        }
+
+        .relative-container {
+          height: 500px;
+
+          .game-options {
+            width: fit-content;
+            margin: auto;
+            visibility: hidden;
+            opacity: 0;
             position: absolute;
-            right: 32px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &.active {
+              visibility: visible;
+              opacity: 1;
+            }
+
+            .pentagon {
+              width: 320px;
+              height: 320px;
+
+              .inner-color {
+                width: 280px;
+                height: 280px;
+                top: calc(50% - 140px);
+                left: calc(50% - 140px);
+              }
+            }
+
+            .option {
+              width: 140px;
+              height: 140px;
+              cursor: pointer;
+            }
+
+            .scissors {
+              top: calc(-40% + 70px);
+              left: calc(50% - 70px);
+            }
+
+            .paper {
+              top: 20%;
+              right: calc(-40% + 70px);
+            }
+
+            .rock {
+              bottom: calc(-40% + 70px);
+              right: 0%;
+            }
+
+            .lizard {
+              bottom: calc(-40% + 70px);
+              left: 0%;
+            }
+
+            .spock {
+              top: 20%;
+              left: calc(-40% + 70px);
+            }
+          }
+
+          .result-game {
+            width: 600px;
+            margin: auto;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &.active {
+              opacity: 1;
+              visibility: visible;
+              transition: opacity 1s, visibility 0.5s;
+            }
+
+            &.expand {
+              width: 800px;
+              transition: width 1s;
+            }
+
+            .options-picked {
+              .pick {
+                display: flex;
+                flex-direction: column-reverse;
+
+                .relative {
+                  position: relative;
+                  margin-top: 64px;
+
+                  .picked {
+                    width: 240px;
+                    height: 240px;
+                    border-radius: 50%;
+
+                    .center-color {
+                      width: 200px;
+                      height: 200px;
+                      top: calc(50% - 100px);
+                      left: calc(50% - 100px);
+                    }
+                  }
+
+                  .layer-1 {
+                    width: 0px;
+                    height: 0px;
+                    top: -50px;
+                    left: -50px;
+
+                    &.active {
+                      width: 340px;
+                      height: 340px;
+                    }
+                  }
+
+                  .layer-2 {
+                    width: 0;
+                    height: 0;
+                    top: -100px;
+                    left: -100px;
+
+                    &.active {
+                      width: 440px;
+                      height: 440px;
+                    }
+                  }
+
+                  .layer-3 {
+                    width: 0;
+                    height: 0;
+                    top: -150px;
+                    left: -150px;
+
+                    &.active {
+                      width: 540px;
+                      height: 540px;
+                    }
+                  }
+                }
+
+                span {
+                  font-weight: 600;
+                  font-size: 20px;
+                }
+              }
+            }
+
+            .result {
+              margin: 0;
+              position: absolute;
+              visibility: hidden;
+              opacity: 0;
+              top: 40%;
+
+              &.active {
+                visibility: visible;
+                opacity: 1;
+              }
+
+              .again {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .rules {
+          justify-content: end;
+          margin-top: 32px;
+
+          .rules-button {
+            width: 130px;
+            height: 40px;
+            font-size: 16px;
             cursor: pointer;
+          }
+        }
+
+        .modal-rules {
+          width: 100%;
+          height: 100%;
+          display: none;
+          background-color: rgba(0, 0, 0, 0.575);
+          z-index: -1000;
+
+          &.active {
+            .center();
+            z-index: 1000;
+          }
+
+          .modal-container {
+            align-items: start;
+            padding: 32px;
+            width: 400px;
+            height: 450px;
+            border-radius: 8px;
+            position: relative;
+
+            h2 {
+              font-size: 28px;
+              margin-bottom: 16px;
+            }
+
+            .close {
+              position: absolute;
+              right: 32px;
+              cursor: pointer;
+            }
           }
         }
       }

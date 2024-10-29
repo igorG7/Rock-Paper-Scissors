@@ -29,10 +29,13 @@ options.forEach((item) => {
     console.log(cpuChosenMove);
 
     playerChosenMove === cpuChosenMove
-      ? draw()
-      : winOrLose(cpuChosenMove, indexMove);
-
-    showMoves(elementPlayerChosenMove, elemetCpuChosen);
+      ? draw(elementPlayerChosenMove, elemetCpuChosen)
+      : winOrLose(
+          cpuChosenMove,
+          indexMove,
+          elementPlayerChosenMove,
+          elemetCpuChosen
+        );
   });
 });
 
@@ -47,11 +50,12 @@ function getRandom() {
 //getRandom();
 console.log(gameOptionsElements);
 
-function draw() {
+function draw(player, cpu) {
   gameOptionsElements.classList.remove("active");
 
   setTimeout(() => {
     showResultGameElement();
+    showMoves(player, cpu);
   }, 1000);
 
   setTimeout(() => {
@@ -71,30 +75,32 @@ const spock = ["lizard", "paper"];
 
 const rules = [scissors, paper, rock, lizard, spock];
 
-function winOrLose(cpuChose, indexRule) {
+function winOrLose(cpuChose, indexRule, player, cpu) {
   let activeRule = rules[indexRule];
   activeRule.includes(cpuChose)
-    ? gameResolveAndScoreUpdate("YOU LOSE")
-    : gameResolveAndScoreUpdate("YOU WIN");
+    ? gameResolveAndScoreUpdate("YOU LOSE", player, cpu)
+    : gameResolveAndScoreUpdate("YOU WIN", player, cpu);
   console.log(activeRule);
 }
 
-function gameResolveAndScoreUpdate(message) {
+function gameResolveAndScoreUpdate(message, player, cpu) {
   console.log(message);
   gameOptionsElements.classList.remove("active");
 
   setTimeout(() => {
     showResultGameElement();
+    showMoves(player, cpu);
   }, 1000);
 
   setTimeout(() => {
     expandAnimation();
-  }, 3000);
+  }, 3500);
 
   setTimeout(() => {
     showResultMessage(message);
+    winnerEffect(message);
     scoreCount(message);
-  }, 4000);
+  }, 4500);
 }
 
 function scoreCount(resultMessage) {
@@ -110,11 +116,27 @@ const cpuPickElement = document.querySelector("#cpu-pick");
 
 function showMoves(player, cpu) {
   console.log(player);
-  playerPickElement.innerHTML = player.outerHTML;
+  playerPickElement.innerHTML += player.outerHTML;
+  cpuPickElement.innerHTML += cpu.outerHTML;
+
+  // setTimeout(() => {
+  //   cpuPickElement.innerHTML += cpu.outerHTML;
+  // }, 2000);
+
+  movesAnimation();
+}
+
+function movesAnimation() {
+  const movePlayer = playerPickElement.querySelector("img");
+  const moveCpu = cpuPickElement.querySelector("img");
 
   setTimeout(() => {
-    cpuPickElement.innerHTML = cpu.outerHTML;
-  }, 2000);
+    movePlayer.classList.add("active");
+  }, 1000);
+
+  setTimeout(() => {
+    moveCpu.classList.add("active");
+  }, 1500);
 }
 
 function showResultGameElement() {
@@ -124,10 +146,31 @@ function showResultGameElement() {
 function showResultMessage(resolutionMessage) {
   result.classList.add("active");
   resultMessage.innerHTML = resolutionMessage;
+  resultMessage.classList.add("active");
+  playAgainButton.classList.add("active");
 }
 
 function expandAnimation() {
   movesPicked.classList.add("expand");
+}
+
+const layersPlayer = document.querySelector("#layers-player");
+const layersCpu = document.querySelector("#layers-cpu");
+
+function winnerEffect(resultMessage) {
+  if (resultMessage === "YOU WIN") {
+    const layers = layersPlayer.querySelectorAll(".layer");
+
+    layers.forEach((item) => {
+      item.classList.add("active");
+    });
+  } else {
+    const layers = layersCpu.querySelectorAll(".layer");
+
+    layers.forEach((item) => {
+      item.classList.add("active");
+    });
+  }
 }
 
 playAgainButton.addEventListener("click", () => {
@@ -135,6 +178,19 @@ playAgainButton.addEventListener("click", () => {
   movesPicked.classList.remove("expand");
   movesPicked.classList.remove("active");
   gameOptionsElements.classList.add("active");
+  resultMessage.classList.remove("active");
+  playAgainButton.classList.remove("active");
+
+  const removeCpuMoveElement = cpuPickElement.querySelector("img");
+  removeCpuMoveElement.remove();
+
+  const removePlayerMoveElement = playerPickElement.querySelector("img");
+  removePlayerMoveElement.remove();
+
+  const layers = document.querySelectorAll(".layer");
+  layers.forEach((item) => {
+    item.classList.remove("active");
+  });
 });
 
 const rulesButton = document.querySelector("#rules-button");
