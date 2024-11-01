@@ -27,411 +27,387 @@
   font-family: "Barlow Semi Condensed";
 }
 
-html {
-  height: 100%;
+body {
+  background: radial-gradient(
+    circle,
+    hsla(214, 47%, 23%, 1) 0%,
+    hsla(238, 48%, 15%, 1) 100%
+  );
+  padding: 32px 0;
+  position: relative;
+  min-height: 100vh;
 
-  body {
-    background: radial-gradient(
-      circle,
-      hsla(214, 47%, 23%, 1) 0%,
-      hsla(238, 48%, 15%, 1) 100%
-    );
-    padding: 32px 0;
-    position: relative;
+  main {
+    width: 80%;
     height: 100%;
+    //background-color: rgba(255, 0, 0, 0.308);
+    .between();
+    flex-direction: column;
+    margin: auto;
 
-    main {
-      width: 80%;
-      height: 100%;
-      background-color: rgba(255, 0, 0, 0.308);
-      .between();
-      flex-direction: column;
-      margin: auto;
+    .score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 615px;
+      height: 120px;
+      margin-bottom: 124px;
+      padding: 16px;
+      border: 2px #606e85 solid;
+      border-radius: 8px;
 
-      .container {
-        width: 100%;
-        height: 90%;
+      .logo {
+        margin-left: 8px;
+        height: 80%;
 
-        .score {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-          max-width: 615px;
-          height: 30%;
-          max-height: 120px;
-          min-height: 100px;
-          padding: 16px;
-          border: 2px #606e85 solid;
-          border-radius: 8px;
-
-          .logo {
-            margin-left: 8px;
-            height: 80%;
-            // background-color: greenyellow;
-
-            .img-logo {
-              height: 100%;
-            }
-          }
-
-          .score-count {
-            width: 90px;
-            height: 80px;
-            background-color: #f1f1f1;
-            border-radius: 8px;
-            padding: 8px;
-            text-align: center;
-            color: #3b4363;
-
-            .text {
-              font-weight: 600;
-              font-size: 12px;
-            }
-
-            .points {
-              font-size: 44px;
-              font-weight: 800;
-            }
-          }
-        }
-
-        .relative-container {
-          width: 100%;
-          max-width: 340px;
-          height: 360px;
-          margin: 0 auto;
-          position: relative;
-
-          .game-options {
-            width: fit-content;
-            margin: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-
-            &.active {
-              opacity: 1;
-            }
-
-            .pentagon {
-              width: 220px;
-              height: 220px;
-              background-color: #16233d;
-              position: relative;
-              clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
-
-              .inner-color {
-                width: 180px;
-                height: 180px;
-                background-color: #1c324e;
-                position: absolute;
-                top: calc(50% - 90px);
-                left: calc(50% - 90px);
-                clip-path: polygon(0 40%, 50% 0, 100% 40%, 80% 100%, 20% 100%);
-              }
-            }
-
-            .option {
-              .center();
-              width: 100px;
-              height: 100px;
-              border-radius: 50%;
-              position: absolute;
-            }
-
-            .scissors {
-              top: calc(-40% + 50px);
-              left: calc(50% - 50px);
-            }
-
-            .paper {
-              top: 20%;
-              right: calc(-40% + 50px);
-            }
-
-            .rock {
-              bottom: calc(-40% + 50px);
-              right: 0%;
-            }
-
-            .lizard {
-              bottom: calc(-40% + 50px);
-              left: 0%;
-            }
-
-            .spock {
-              top: 20%;
-              left: calc(-40% + 50px);
-            }
-          }
-
-          .result-game {
-            width: 100%;
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            &.active {
-              opacity: 1;
-              visibility: visible;
-              transition: opacity 1s, visibility 0.5s;
-            }
-
-            .options-picked {
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              position: relative;
-
-              .pick {
-                text-align: center;
-
-                .relative {
-                  position: relative;
-                  margin-bottom: 32px;
-
-                  .picked {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    position: relative;
-                    z-index: 1;
-                    margin: auto;
-
-                    .center-color {
-                      background-color: #16233d;
-                      width: 80px;
-                      height: 80px;
-                      border-radius: 50%;
-                      position: absolute;
-                      top: calc(50% - 40px);
-                      left: calc(50% - 40px);
-                      z-index: -1;
-                    }
-
-                    img {
-                      width: 0%;
-                      height: 0%;
-                      z-index: 1;
-                      transform: scale(0);
-
-                      &.active {
-                        width: 100%;
-                        height: 100%;
-                        transform: scale(1);
-                        transition: transform 0.5s;
-                      }
-                    }
-                  }
-
-                  .layer-1 {
-                    width: 0;
-                    height: 0;
-                    border-radius: 50%;
-                    background-color: white;
-                    position: absolute;
-                    top: -40px;
-                    left: -40px;
-                    z-index: -1;
-                    visibility: hidden;
-                    opacity: 0;
-                    transform: scale(0);
-
-                    &.active {
-                      width: 200px;
-                      height: 200px;
-                      visibility: visible;
-                      opacity: 0.05;
-                      transform: scale(1);
-                      transition: transform 0.5s, opacity 0.5s;
-                    }
-                  }
-
-                  .layer-2 {
-                    width: 0;
-                    height: 0;
-                    border-radius: 50%;
-                    background-color: white;
-                    position: absolute;
-                    top: -80px;
-                    left: -80px;
-                    z-index: -1;
-                    visibility: hidden;
-                    opacity: 0;
-                    transform: scale(0);
-
-                    &.active {
-                      width: 280px;
-                      height: 280px;
-                      visibility: visible;
-                      opacity: 0.025;
-                      transform: scale(1);
-                      transition: transform 1s, opacity 1s;
-                    }
-                  }
-
-                  .layer-3 {
-                    width: 0;
-                    height: 0;
-                    border-radius: 50%;
-                    background-color: white;
-                    position: absolute;
-                    top: -120px;
-                    left: -120px;
-                    z-index: -1;
-                    visibility: hidden;
-                    opacity: 0;
-                    transform: scale(0);
-
-                    &.active {
-                      width: 360px;
-                      height: 360px;
-                      visibility: visible;
-                      opacity: 0.015;
-                      transform: scale(1);
-                      transition: transform 1.5s, opacity 1.5s;
-                    }
-                  }
-                }
-
-                span {
-                  color: white;
-                  font-weight: 600;
-                }
-              }
-            }
-
-            .result {
-              width: 100%;
-              height: 120px;
-              display: flex;
-              flex-direction: column;
-              visibility: hidden;
-              opacity: 0;
-              align-items: center;
-              margin-top: 64px;
-
-              &.active {
-                visibility: visible;
-                opacity: 1;
-              }
-
-              p {
-                color: white;
-                font-weight: 600;
-                font-size: 60px;
-
-                &.active {
-                  font-size: 48px;
-                  transition: font-size 300ms;
-                }
-              }
-
-              .button-container {
-                height: 40px;
-                width: 100%;
-                display: flex;
-                position: relative;
-                margin-top: 16px;
-
-                .again {
-                  width: 100%;
-                  max-width: 191px;
-                  height: 40px;
-                  border-radius: 8px;
-                  border: none;
-                  position: absolute;
-                  left: -20%;
-                  opacity: 0;
-
-                  &.active {
-                    left: calc(50% - 95px);
-                    opacity: 1;
-                    transition: left 400ms, opacity 400ms;
-                  }
-
-                  span {
-                    font-weight: 600;
-                    font-size: 16px;
-                  }
-                }
-              }
-            }
-          }
+        .img-logo {
+          height: 100%;
         }
       }
 
-      .rules {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 32px;
+      .score-count {
+        width: 90px;
+        height: 80px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        padding: 8px;
+        text-align: center;
+        color: #3b4363;
 
-        .rules-button {
-          width: 110px;
-          height: 40px;
-          background-color: transparent;
-          border: 1px solid white;
-          border-radius: 8px;
-          color: white;
+        .text {
           font-weight: 600;
+          font-size: 12px;
+        }
+
+        .points {
+          font-size: 44px;
+          font-weight: 800;
         }
       }
+    }
 
-      .modal-rules {
-        width: 100%;
-        height: 100%;
-        visibility: hidden;
-        opacity: 0;
+    .relative-container {
+      width: 100%;
+      max-width: 340px;
+      height: 380px;
+      margin: 0 auto;
+      position: relative;
+
+      .game-options {
+        width: fit-content;
+        margin: auto;
         position: absolute;
         top: 0;
-        left: 0;
-        transition: opacity 200ms, visibility 200ms;
-        overflow: hidden;
+        left: 50%;
+        transform: translate(-50%);
+        opacity: 0;
 
         &.active {
-          visibility: visible;
           opacity: 1;
-          transition: opacity 300ms, visibility 300ms;
         }
 
-        .modal-container {
+        .pentagon {
+          width: 220px;
+          height: 220px;
+          position: relative;
+        }
+
+        .option {
           .center();
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          position: absolute;
+        }
+
+        .scissors {
+          top: calc(-40% + 50px);
+          left: calc(50% - 50px);
+        }
+
+        .paper {
+          top: 20%;
+          right: calc(-40% + 50px);
+        }
+
+        .rock {
+          bottom: calc(-40% + 50px);
+          right: 0%;
+        }
+
+        .lizard {
+          bottom: calc(-40% + 50px);
+          left: 0%;
+        }
+
+        .spock {
+          top: 20%;
+          left: calc(-40% + 50px);
+        }
+      }
+
+      .result-game {
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &.active {
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 1s, visibility 0.5s;
+        }
+
+        .options-picked {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          .pick {
+            text-align: center;
+
+            .relative {
+              position: relative;
+              margin-bottom: 32px;
+
+              .picked {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                position: relative;
+                z-index: 1;
+                margin: auto;
+
+                .center-color {
+                  background-color: #16233d;
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 50%;
+                  position: absolute;
+                  top: calc(50% - 40px);
+                  left: calc(50% - 40px);
+                  z-index: -1;
+                }
+
+                img {
+                  width: 0%;
+                  height: 0%;
+                  z-index: 1;
+                  transform: scale(0);
+
+                  &.active {
+                    width: 100%;
+                    height: 100%;
+                    transform: scale(1);
+                    transition: transform 0.5s;
+                  }
+                }
+              }
+
+              .layer-1 {
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background-color: white;
+                position: absolute;
+                top: -40px;
+                left: -40px;
+                z-index: -1;
+                visibility: hidden;
+                opacity: 0;
+                transform: scale(0);
+
+                &.active {
+                  width: 200px;
+                  height: 200px;
+                  visibility: visible;
+                  opacity: 0.05;
+                  transform: scale(1);
+                  transition: transform 0.5s, opacity 0.5s;
+                }
+              }
+
+              .layer-2 {
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background-color: white;
+                position: absolute;
+                top: -80px;
+                left: -80px;
+                z-index: -1;
+                visibility: hidden;
+                opacity: 0;
+                transform: scale(0);
+
+                &.active {
+                  width: 280px;
+                  height: 280px;
+                  visibility: visible;
+                  opacity: 0.025;
+                  transform: scale(1);
+                  transition: transform 1s, opacity 1s;
+                }
+              }
+
+              .layer-3 {
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background-color: white;
+                position: absolute;
+                top: -120px;
+                left: -120px;
+                z-index: -1;
+                visibility: hidden;
+                opacity: 0;
+                transform: scale(0);
+
+                &.active {
+                  width: 360px;
+                  height: 360px;
+                  visibility: visible;
+                  opacity: 0.015;
+                  transform: scale(1);
+                  transition: transform 1.5s, opacity 1.5s;
+                }
+              }
+            }
+
+            span {
+              color: white;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .result {
+          width: 100%;
+          height: 120px;
+          display: flex;
           flex-direction: column;
-          padding: 32px;
+          visibility: hidden;
+          opacity: 0;
+          align-items: center;
+          margin-top: 64px;
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+          }
+
+          p {
+            color: white;
+            font-weight: 600;
+            font-size: 60px;
+
+            &.active {
+              font-size: 48px;
+              transition: font-size 300ms;
+            }
+          }
+
+          .button-container {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            position: relative;
+            margin-top: 16px;
+
+            .again {
+              width: 100%;
+              max-width: 191px;
+              height: 40px;
+              border-radius: 8px;
+              border: none;
+              position: absolute;
+              left: -20%;
+              opacity: 0;
+
+              &.active {
+                left: calc(50% - 95px);
+                opacity: 1;
+                transition: left 400ms, opacity 400ms;
+              }
+
+              span {
+                font-weight: 600;
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .rules {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+
+      .rules-button {
+        width: 120px;
+        height: 40px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+      }
+    }
+
+    .modal-rules {
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 200ms, visibility 200ms;
+      overflow: hidden;
+
+      &.active {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 300ms, visibility 300ms;
+      }
+
+      .modal-container {
+        .center();
+        flex-direction: column;
+        padding: 32px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+
+        .elements-container {
+          .between();
+          flex-direction: column;
           width: 100%;
           height: 100%;
-          background-color: rgb(255, 255, 255);
+          max-height: 500px;
 
-          .elements-container {
-            .between();
-            flex-direction: column;
+          h2 {
+            color: #3b4363;
+            font-weight: 700;
+          }
+
+          img {
             width: 100%;
-            height: 100%;
-            max-height: 500px;
+            max-width: 320px;
+          }
 
-            h2 {
-              color: #3b4363;
-              font-weight: 700;
-            }
-
-            img {
-              width: 100%;
-              max-width: 320px;
-            }
-
-            .close {
-              margin: 0 auto;
-              width: fit-content;
-              background-color: transparent;
-              border: none;
-            }
+          .close {
+            margin: 0 auto;
+            width: fit-content;
+            background-color: transparent;
+            border: none;
           }
         }
       }
@@ -440,257 +416,253 @@ html {
 }
 
 @media (min-width: 1024px) {
-  html {
-    body {
+  body {
+    height: 100%;
+
+    main {
+      width: 90%;
       height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-      main {
-        width: 90%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      .score {
+        width: 50%;
+        max-width: 600px;
+        margin-bottom: 100px;
 
-        .container {
-          .score {
-            width: 50%;
-            max-width: 600px;
-            margin-bottom: 100px;
-
-            .logo {
-              img {
-                height: 100px;
-              }
-            }
-
-            .score-count {
-              width: 140px;
-              height: 100px;
-              padding: 16px;
-
-              .text {
-                font-size: 14px;
-              }
-
-              .points {
-                font-size: 56px;
-              }
-            }
-          }
-
-          .relative-container {
-            height: 500px;
-
-            .game-options {
-              width: fit-content;
-              margin: auto;
-              visibility: hidden;
-              opacity: 0;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-
-              &.active {
-                visibility: visible;
-                opacity: 1;
-              }
-
-              .pentagon {
-                width: 320px;
-                height: 320px;
-
-                .inner-color {
-                  width: 280px;
-                  height: 280px;
-                  top: calc(50% - 140px);
-                  left: calc(50% - 140px);
-                }
-              }
-
-              .option {
-                width: 140px;
-                height: 140px;
-                cursor: pointer;
-              }
-
-              .scissors {
-                top: calc(-40% + 70px);
-                left: calc(50% - 70px);
-              }
-
-              .paper {
-                top: 20%;
-                right: calc(-40% + 70px);
-              }
-
-              .rock {
-                bottom: calc(-40% + 70px);
-                right: 0%;
-              }
-
-              .lizard {
-                bottom: calc(-40% + 70px);
-                left: 0%;
-              }
-
-              .spock {
-                top: 20%;
-                left: calc(-40% + 70px);
-              }
-            }
-
-            .result-game {
-              width: 600px;
-              margin: auto;
-              opacity: 0;
-              visibility: hidden;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-
-              &.active {
-                opacity: 1;
-                visibility: visible;
-                transition: opacity 1s, visibility 0.5s;
-              }
-
-              &.expand {
-                width: 800px;
-                transition: width 1s;
-              }
-
-              .options-picked {
-                .pick {
-                  display: flex;
-                  flex-direction: column-reverse;
-
-                  .relative {
-                    position: relative;
-                    margin-top: 64px;
-
-                    .picked {
-                      width: 240px;
-                      height: 240px;
-                      border-radius: 50%;
-
-                      .center-color {
-                        width: 200px;
-                        height: 200px;
-                        top: calc(50% - 100px);
-                        left: calc(50% - 100px);
-                      }
-                    }
-
-                    .layer-1 {
-                      width: 0px;
-                      height: 0px;
-                      top: -50px;
-                      left: -50px;
-
-                      &.active {
-                        width: 340px;
-                        height: 340px;
-                      }
-                    }
-
-                    .layer-2 {
-                      width: 0;
-                      height: 0;
-                      top: -100px;
-                      left: -100px;
-
-                      &.active {
-                        width: 440px;
-                        height: 440px;
-                      }
-                    }
-
-                    .layer-3 {
-                      width: 0;
-                      height: 0;
-                      top: -150px;
-                      left: -150px;
-
-                      &.active {
-                        width: 540px;
-                        height: 540px;
-                      }
-                    }
-                  }
-
-                  span {
-                    font-weight: 600;
-                    font-size: 20px;
-                  }
-                }
-              }
-
-              .result {
-                margin: 0;
-                position: absolute;
-                visibility: hidden;
-                opacity: 0;
-                top: 40%;
-
-                &.active {
-                  visibility: visible;
-                  opacity: 1;
-                }
-
-                .again {
-                  cursor: pointer;
-                }
-              }
-            }
+        .logo {
+          img {
+            height: 100px;
           }
         }
 
-        .rules {
-          justify-content: end;
-          margin-top: 32px;
+        .score-count {
+          width: 140px;
+          height: 100px;
+          padding: 16px;
 
-          .rules-button {
-            width: 130px;
-            height: 40px;
-            font-size: 16px;
+          .text {
+            font-size: 14px;
+          }
+
+          .points {
+            font-size: 56px;
+          }
+        }
+      }
+
+      .relative-container {
+        height: 500px;
+
+        .game-options {
+          width: fit-content;
+          margin: auto;
+          visibility: hidden;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+          }
+
+          .pentagon {
+            width: 320px;
+            height: 320px;
+
+            .inner-color {
+              width: 280px;
+              height: 280px;
+              top: calc(50% - 140px);
+              left: calc(50% - 140px);
+            }
+          }
+
+          .option {
+            width: 140px;
+            height: 140px;
             cursor: pointer;
           }
+
+          .scissors {
+            top: calc(-40% + 70px);
+            left: calc(50% - 70px);
+          }
+
+          .paper {
+            top: 20%;
+            right: calc(-40% + 70px);
+          }
+
+          .rock {
+            bottom: calc(-40% + 70px);
+            right: 0%;
+          }
+
+          .lizard {
+            bottom: calc(-40% + 70px);
+            left: 0%;
+          }
+
+          .spock {
+            top: 20%;
+            left: calc(-40% + 70px);
+          }
         }
 
-        .modal-rules {
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.575);
-          .center();
+        .result-game {
+          width: 600px;
+          margin: auto;
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-          .modal-container {
-            padding: 32px;
-            width: 400px;
-            height: 450px;
-            border-radius: 8px;
-            position: relative;
+          &.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s, visibility 0.5s;
+          }
 
-            .elements-container {
+          &.expand {
+            width: 800px;
+            transition: width 1s;
+          }
+
+          .options-picked {
+            .pick {
               display: flex;
-              align-items: start;
+              flex-direction: column-reverse;
 
-              h2 {
-                font-size: 28px;
-                margin-bottom: 0;
+              .relative {
+                position: relative;
+                margin-top: 64px;
+
+                .picked {
+                  width: 240px;
+                  height: 240px;
+                  border-radius: 50%;
+
+                  .center-color {
+                    width: 200px;
+                    height: 200px;
+                    top: calc(50% - 100px);
+                    left: calc(50% - 100px);
+                  }
+                }
+
+                .layer-1 {
+                  width: 0px;
+                  height: 0px;
+                  top: -50px;
+                  left: -50px;
+
+                  &.active {
+                    width: 340px;
+                    height: 340px;
+                  }
+                }
+
+                .layer-2 {
+                  width: 0;
+                  height: 0;
+                  top: -100px;
+                  left: -100px;
+
+                  &.active {
+                    width: 440px;
+                    height: 440px;
+                  }
+                }
+
+                .layer-3 {
+                  width: 0;
+                  height: 0;
+                  top: -150px;
+                  left: -150px;
+
+                  &.active {
+                    width: 540px;
+                    height: 540px;
+                  }
+                }
               }
 
-              img {
-                margin: 0 auto;
+              span {
+                font-weight: 600;
+                font-size: 20px;
               }
+            }
+          }
 
-              .close {
-                position: absolute;
-                right: 32px;
-                top: 41px;
-                cursor: pointer;
-              }
+          .result {
+            margin: 0;
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            top: 40%;
+
+            &.active {
+              visibility: visible;
+              opacity: 1;
+            }
+
+            .again {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .rules {
+        justify-content: end;
+        margin-top: 32px;
+
+        .rules-button {
+          width: 130px;
+          height: 40px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+
+      .modal-rules {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.575);
+        .center();
+
+        .modal-container {
+          padding: 32px;
+          width: 400px;
+          height: 450px;
+          border-radius: 8px;
+          position: relative;
+
+          .elements-container {
+            display: flex;
+            align-items: start;
+
+            h2 {
+              font-size: 28px;
+              margin-bottom: 0;
+            }
+
+            img {
+              margin: 0 auto;
+            }
+
+            .close {
+              position: absolute;
+              right: 32px;
+              top: 41px;
+              cursor: pointer;
             }
           }
         }

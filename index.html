@@ -13,98 +13,94 @@
   </head>
   <body>
     <main>
-      <div class="container">
-        <div class="score">
-          <div class="logo">
-            <img class="img-logo" src="imgs/logo-bonus.svg" alt="" />
-          </div>
-          <div class="score-count">
-            <p class="text">S C O R E</p>
-            <p class="points" id="points"></p>
-          </div>
+      <div class="score">
+        <div class="logo">
+          <img class="img-logo" src="imgs/logo-bonus.svg" alt="" />
+        </div>
+        <div class="score-count">
+          <p class="text">S C O R E</p>
+          <p class="points" id="points"></p>
+        </div>
+      </div>
+
+      <div class="relative-container">
+        <div class="game-options active" id="game-options">
+          <img class="pentagon" src="imgs/pentagono.svg" alt="" />
+
+          <img
+            src="imgs/scissors.svg"
+            alt=""
+            class="option scissors"
+            data-option="scissors"
+            data-index="0"
+          />
+
+          <img
+            src="imgs/paper.svg"
+            alt=""
+            class="option paper"
+            data-option="paper"
+            data-index="1"
+          />
+
+          <img
+            src="imgs/rock.svg"
+            alt=""
+            class="option rock"
+            data-option="rock"
+            data-index="2"
+          />
+
+          <img
+            src="imgs/lizard.svg"
+            alt=""
+            class="option lizard"
+            data-option="lizard"
+            data-index="3"
+          />
+
+          <img
+            src="imgs/spock.svg"
+            alt=""
+            class="option spock"
+            data-option="spock"
+            data-index="4"
+          />
         </div>
 
-        <div class="relative-container">
-          <div class="game-options active" id="game-options">
-            <div class="pentagon">
-              <div class="inner-color"></div>
+        <div class="result-game" id="result-game">
+          <div class="options-picked">
+            <div class="pick">
+              <div class="relative" id="layers-player">
+                <div class="picked" id="player-pick">
+                  <div class="center-color"></div>
+                </div>
+                <div class="layer layer-1"></div>
+                <div class="layer layer-2"></div>
+                <div class="layer layer-3"></div>
+              </div>
+              <span>YOU PICKED</span>
             </div>
 
-            <img
-              src="imgs/scissors.svg"
-              alt=""
-              class="option scissors"
-              data-option="scissors"
-              data-index="0"
-            />
-
-            <img
-              src="imgs/paper.svg"
-              alt=""
-              class="option paper"
-              data-option="paper"
-              data-index="1"
-            />
-
-            <img
-              src="imgs/rock.svg"
-              alt=""
-              class="option rock"
-              data-option="rock"
-              data-index="2"
-            />
-
-            <img
-              src="imgs/lizard.svg"
-              alt=""
-              class="option lizard"
-              data-option="lizard"
-              data-index="3"
-            />
-
-            <img
-              src="imgs/spock.svg"
-              alt=""
-              class="option spock"
-              data-option="spock"
-              data-index="4"
-            />
+            <div class="pick">
+              <div class="relative" id="layers-cpu">
+                <div class="picked" id="cpu-pick">
+                  <div class="center-color"></div>
+                </div>
+                <div class="layer layer-1"></div>
+                <div class="layer layer-2"></div>
+                <div class="layer layer-3"></div>
+              </div>
+              <span>THE HOUSE PICKED</span>
+            </div>
           </div>
 
-          <div class="result-game" id="result-game">
-            <div class="options-picked">
-              <div class="pick">
-                <div class="relative" id="layers-player">
-                  <div class="picked" id="player-pick">
-                    <div class="center-color"></div>
-                  </div>
-                  <div class="layer layer-1"></div>
-                  <div class="layer layer-2"></div>
-                  <div class="layer layer-3"></div>
-                </div>
-                <span>YOU PICKED</span>
-              </div>
-
-              <div class="pick">
-                <div class="relative" id="layers-cpu">
-                  <div class="picked" id="cpu-pick">
-                    <div class="center-color"></div>
-                  </div>
-                  <div class="layer layer-1"></div>
-                  <div class="layer layer-2"></div>
-                  <div class="layer layer-3"></div>
-                </div>
-                <span>THE HOUSE PICKED</span>
-              </div>
-            </div>
-
-            <div class="result" id="result">
-              <p id="result-message"></p>
-              <div class="button-container">
-                <button class="again" id="play-again-button">
-                  <span>PLAY AGAIN</span>
-                </button>
-              </div>
+          <div class="result" id="result">
+            <p id="result-message"></p>
+            <div class="button-container">
+              <button class="again" id="play-again-button">
+                <span>PLAY AGAIN</span>
+              </button>
             </div>
           </div>
         </div>
