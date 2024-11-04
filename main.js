@@ -22,7 +22,11 @@ options.forEach((item) => {
       elementPlayerChosenMove.getAttribute("data-index")
     );
 
+    console.log(elementPlayerChosenMove);
+    console.log(playerChosenMove);
+
     let cpuChosenMove = getRandom();
+    console.log(cpuChosenMove);
 
     playerChosenMove === cpuChosenMove
       ? draw(elementPlayerChosenMove, elemetCpuChosen)
@@ -42,6 +46,9 @@ function getRandom() {
 
   return cpuChosenMove;
 }
+
+//getRandom();
+console.log(gameOptionsElements);
 
 function draw(player, cpu) {
   gameOptionsElements.classList.remove("active");
@@ -73,9 +80,11 @@ function winOrLose(cpuChose, indexRule, player, cpu) {
   activeRule.includes(cpuChose)
     ? gameResolveAndScoreUpdate("YOU LOSE", player, cpu)
     : gameResolveAndScoreUpdate("YOU WIN", player, cpu);
+  console.log(activeRule);
 }
 
 function gameResolveAndScoreUpdate(message, player, cpu) {
+  console.log(message);
   gameOptionsElements.classList.remove("active");
 
   setTimeout(() => {
@@ -99,14 +108,20 @@ function scoreCount(resultMessage) {
   if (scoreUser < 0) scoreUser = 0;
   localStorage.setItem("score", scoreUser);
   score.innerHTML = scoreUser;
+  console.log(scoreUser);
 }
 
 const playerPickElement = document.querySelector("#player-pick");
 const cpuPickElement = document.querySelector("#cpu-pick");
 
 function showMoves(player, cpu) {
+  console.log(player);
   playerPickElement.innerHTML += player.outerHTML;
   cpuPickElement.innerHTML += cpu.outerHTML;
+
+  // setTimeout(() => {
+  //   cpuPickElement.innerHTML += cpu.outerHTML;
+  // }, 2000);
 
   movesAnimation();
 }
